@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 //Middleware
 router.use(express.json())
 
-// Register a new instructor account
+// Register a new account
 router.post("/register", async (req, res, next) => {
   try {
     const user = await prisma.user.create({
@@ -40,7 +40,7 @@ router.post("/login", async (req, res, next) => {
       return res.status(401).send("Invalid login credentials.")
     }
 
-    // Create a token with the instructor id
+    // Create a token with the user id
     const token = jwt.sign({ id: user.id }, process.env.JWT)
 
     const decodedToken = jwt.verify(token, process.env.JWT)
@@ -54,7 +54,7 @@ router.post("/login", async (req, res, next) => {
   }
 })
 
-// Get the currently logged in instructor
+// Get the currently logged in user
 router.get("/me", async (req, res, next) => {
   try {
     if (req.user) {

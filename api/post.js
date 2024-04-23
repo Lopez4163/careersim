@@ -1,4 +1,3 @@
-// An instructor can only access their own students' data.
 const router = require("express").Router()
 const express = require("express")
 const jwt = require("jsonwebtoken")
